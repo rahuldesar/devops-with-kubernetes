@@ -30,7 +30,7 @@
 ## Namespace
 
 - Grouping
-  - Services
-  - pods
-  - Replication controller
-  - volumes
+- Services
+- pods
+- Replication controller
+- volumes
