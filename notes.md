@@ -1,4 +1,4 @@
-## cluster
+## Cluster
 
 ## Labels
 
@@ -9,6 +9,10 @@
 
 - Machine
 - Generally 1 container per machine
+
+## Deployments
+
+## Image
 
 ## Replication Controller
 
