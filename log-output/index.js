@@ -1,13 +1,18 @@
+import express from "express";
 import { v4 } from "uuid";
 
-const RANDOM_NUMBER = v4();
+const app = express();
+const port = 3000;
 
-function logOutput() {
-  console.log(`${new Date().toISOString()} ${RANDOM_NUMBER}`);
+function generateTimestampUUID() {
+  const RANDOM_NUMBER = v4();
+  return `${new Date().toISOString()} ${RANDOM_NUMBER}`;
 }
 
-logOutput();
+app.get("/", (_req, res) => {
+  res.send(generateTimestampUUID());
+});
 
-setInterval(() => {
-  logOutput();
-}, 5000);
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
+});

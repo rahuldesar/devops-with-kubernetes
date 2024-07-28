@@ -25,5 +25,5 @@ spec:
     spec:
       containers:
         - name: log-output
-          image: rahuldesar/log-output
-          imagePullPolicy: IfNotPresent
+          image: rahuldesar/log-output:latest
+          imagePullPolicy: Always

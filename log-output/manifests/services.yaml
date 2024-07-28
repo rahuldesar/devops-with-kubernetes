@@ -1,0 +1,16 @@
+# https://kubernetes.io/docs/concepts/services-networking/service/
+apiVersion: v1
+kind: Service
+metadata:
+  name: log-output-svc
+  namespace: default
+spec:
+  selector:
+    app: log-output
+  type: ClusterIP
+  ports:
+    - name: log-output-port
+      protocol: TCP
+      port: 2555
+      targetPort: 3000
+---
