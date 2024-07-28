@@ -1,0 +1,29 @@
+# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ping-pong-app
+  namespace: default
+  labels:
+    app: log-output
+spec:
+  selector:
+    matchLabels:
+      app: ping-pong
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: ping-pong-app
+      labels:
+        app: ping-pong
+    spec:
+      containers:
+        - name: ping-pong
+          image: rahuldesar/ping-pong-app:latest
+          imagePullPolicy: Always
