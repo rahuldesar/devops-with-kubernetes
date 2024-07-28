@@ -1,0 +1,35 @@
+# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: log-output-core
+  namespace: default
+  labels:
+    app: log-output-core
+
+spec:
+  selector:
+    matchLabels:
+      app: log-output-core
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: log-output-core
+    spec:
+      volumes: # Define volume
+        - name: shared-file
+          emptyDir: {}
+      containers:
+        - name: log-output-file
+          image: rahuldesar/log-output-file:v0.1.1
+          imagePullPolicy: IfNotPresent
+          volumeMounts: # Mount volume
+            - name: shared-file
+              mountPath: /usr/src/app/files
+        - name: log-generator
+          image: rahuldesar/log-generator:v0.1.1
+          imagePullPolicy: IfNotPresent
+          volumeMounts: # Mount volume
+            - name: shared-file
+              mountPath: /usr/src/app/files
