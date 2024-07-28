@@ -1,5 +1,5 @@
 services:
   server:
-    image: rahuldesar/log-output-file:v0.1.1
+    image: rahuldesar/log-output-file:v0.1.5
     build:
       context: .

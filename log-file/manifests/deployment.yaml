@@ -19,16 +19,19 @@ spec:
     spec:
       volumes: # Define volume
         - name: shared-file
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: file-claim
+        # - name: shared-file
+        #   emptyDir: {}
       containers:
-        - name: log-output-file
-          image: rahuldesar/log-output-file:v0.1.1
+        - name: log-generator
+          image: rahuldesar/log-generator:v0.1.5
           imagePullPolicy: IfNotPresent
           volumeMounts: # Mount volume
             - name: shared-file
               mountPath: /usr/src/app/files
-        - name: log-generator
-          image: rahuldesar/log-generator:v0.1.1
+        - name: log-output-file
+          image: rahuldesar/log-output-file:v0.1.5
           imagePullPolicy: IfNotPresent
           volumeMounts: # Mount volume
             - name: shared-file

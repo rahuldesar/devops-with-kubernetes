@@ -14,11 +14,10 @@ async function readContent() {
   }
 }
 
-async function startServer() {
+function startServer() {
   try {
-    let data = await readContent();
-
-    app.get("/", (_req, res) => {
+    app.get("/", async (_req, res) => {
+      let data = await readContent();
       res.send(data);
     });
 
